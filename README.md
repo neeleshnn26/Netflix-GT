@@ -1,70 +1,49 @@
-# Getting Started with Create React App
+# Netflix-GPT
+- used create-react-app for starting the project.
+- used tailwind for CSS
+- created body component inside app.js , inside body component there is Login and browse component and we have have provided router to the body component , and browse component will only open when once authentication is done.
+- inside login component we have our header component 
+- after completion of header we built our login form .
+- humne login form aur sign up form ek hi bna rkha hai bs hum usko toggle krwa rahe hai on click pr , mtlb ki sign up pr click krne pr humne useState us ekia hai jo sign in ki value ko false kr dega, aur issi k according humne pura form ko toggle krwa rkha hai 
+- Isk baad humne form validation krenge , jisme hume check krenge ki jo hamare form me entries hori hai vo correct hai ki ni jaise ki name email password etc., agr isme se kuch bhi galat dalta hai to hm usme error show kr denge , aur humne form validation k lie regex ka use kia hai. aur ye error tb show hoga ya form validate tb hoga jb hum sign in ya sign up button pr click krenge.
+- agr hume form validation ke time pr koi error mesaage return hota hai , to hum useState ki help se UI me show krenge.
+- we have used firebase for creating userdatabase and deployed our website using firebase.
+- Dekho hum ab pura recap krte hai ki humne kya kia tha krk , sbse phele humne ek form banaya jisko hum toggle krre hai sign in /sign up k according , usk baad humne form validation kia , iska mtlb ki jo bhi hum name , email , password daal rhe hai vo shi hai ya ni hai mtlb jaise password me special character hone chaiye aur email me @ hona jaruri hai wagera wagera , aur agr koi error aayega to usko hum show kr denge useState ki madad se , aur ye cheez tb hogi jb hum sign in ya sign up button pr click krenge , usk baad jb ye waala validation check ho jaaega aur koi error ni aayega to usk baad hum jaaenge firebase authentication k lie, jisme hum phele sign up ka logic likhenge aur phir sign in ka , aur agr agr sign up ya sign in krte waqt koi error aata hai to vo bhi show ho jaaega.aur ek br sign up ya sign in ho gaya to vo hume browse page me redirect kr dega.
+- next humne redux store setup krlia hai , jaise hi humara user sign up ya sign in krega usse browse page me redirect kr denge aur jo uska data hoga  redux me enter ho jaaega addUser action k through, usk baad hum uss data ko khi bhi use kr skte hai jb bhi user ne login ki ahoga jaise ki khi pr uska naam dikhanan hai ya email wagera wagera , aur jb hum sign out krenege to removeUser action call hoga aur redux se user ka data hat jaaega.aur jb bhi hum sign up ya signin krenge to hum browse oage me redirect kr die jaaenge.
+- isk baad humne kya kia ki agr hum home page me hai to hum /browse daalkr URl me hum redirect nhi ho skte hai hai browse page pr jbtk humne login nhi ki ahai , aur hum home page pr bhi ni jaa skte hai jbtk humnesign out nhi kia hai , ye humne navigate function k through kia hai humne navigate use kia onAuthStateChannge k andar aur ye ek event listener ki trah kaam krta hai aur agr humne agr sign up ya sign in kia tb bhi ye call hoga , aur agr humne sign out kia to tb bhi ye call hoga. to humne vhi pe navigate function ka use kia hai ki jb hum sign up ya sign in krenge to hum browse page pr jaaenge navigate k through aur jb hum sign out krenge to hum home page pr jaaenge naviagte k through.
+- we also unsubscribed to onAuthStateChange function , and we added hardcoded values to the constants file.
+- isk baad humne TMDB ki website se movies ki apis ko liya , jaise ki nowplayingmovies, toprated etc etc. jaise hi humne unki apis se movies ko extract kia to humne un movies ko redux me daal dia , aur jo bhi nowplayingmovies aur toprated movies ke data ko fetch kia tha unki apis se  humne unko ek alag custom hook me daal dia sbko taaki hamara code thora clean lage.
+- usk baad hum apne browse page ko build krenge jisme , hum browse page ko 2 part me divide kr denge , maincontainer aur secondary container me, main container me hamari ek video chlri hogi aur uska title wagera likha hoga aur secondary container me movielist hungi bahut saari jaise ki top rated etc etc aur usk andar bahut saare cards hunge 
+- main container : k andar hamare usme ek to background video hogi aur uss video k beech me uss vieo ka title aur description hoga , hum title aur description bhi TMDB ki api se hi nikalenge , aur video ka trailer bhi , mtln dekho hoga kya ki , hum phele TMDB apis me jaaenge vha pr bahut saari movies ki list hogi jaise ki now playing, most popular , top rated etc etc . hum usme se koi bhi ek le lenge jaise ki humne iss project me nowplaying le li hai , usk baad  nowplaying ki api k andar bahut saari movies hogi to hum first waali le lenge aur uska title aur description le lenge usse kyuki hume video usk andar ni milti hai hume use yt se lena pdega , aur jo nowplaying waali list hai iusko hum redux me daal denge taaki hum use khi se bhi access kr sake , usk baad hum log uss movie ki id le lenge jo humne nowplaying se select kri hai, uski id hume ussi k andar mil jaaegi , usk baad hum TMDB me jaake movies ka ek section aata hai usko hum select krenge aur usme vo id daal denge jsse hume uss movie se realted uska trailer aur bhi bahut saari clips mil jaaegi, to hum uski api se trailer utha lenge filter krk , aur agr trailer nhi hua to koi bhi video utha lenge jo sbse phele hogi, to jb hume trailer mil jaaega filter krk , usk andar ek key hogii jisko hum use krenge yt k frame k andar daalne k lie taaki hamare pass vo trailer aa jaae ui me , hum chahte to direct key daalkr bhi kr skte the yt ki kisi bhi video me , pr hume sb kuch dynamic banana tha to isliye humne esa kia , kyuki kl k din agar kuch bhi key , id wagera kuch bhi change hogi to hum kha usse hardcode krte rhenge isliye humne esa kia, aur jitni bhi hum api call krre hai movies wagera k lie usko hum ek naye hooks waale section me daal dere hai taaki haamra code clean dikhe.
+- secondary container: humne nowplaying movies ka array pura redux k movies waale store  me daala tha , uskk baad humne vha se un movies ko access kia aur usse hume un movies k poster mile jinhe humne TMDB ki CDN url k sth joda aur unka poster nikala , usk humn emap function ka use krk saare posters nikaal die now playing waale k , similarly hum ebaakiyo k lie bhi yehi krenge , phele hum top rated etc etc ko redux me daalenge aur phir secondary container me access krenge aur unko ek k neeche ek place kr denge. 
+- Gpt search: humne gpt search naam ka ek button banaya aur usko toggle krwaya redux k through , mtlb hum agr GPT button me click krenge to usse redux k andar value toggle hogi jise hum useSelector k through fetch krenge aur gpt search component show krwayenge , ye cheez hum useState k through bhi kr skte the pr agr hamare pass redux hai to kuu jabardasti hook ka use krna hai ,hum jo bhi kaam redux se krwa rhe hai unko hum kai br useState se bhi kr skte hai pr hum iss project me nhi krre hai aur uska reason ye bhi hai ki agr hamare pass redux hai to faltu me hook ka use kuu krna hai.
+- isk baad humne gptSearch naam ka ek component banaya  jisme humne do component daale , phela gptSearchBar aur Gpt movie suggestion.
+- GptSearchBar: isk andar humne ek input box daala aur search button rkha , agr hume koi bhi movie gpt k thriugh search krni ho to iskiye , aur isko humne multi language k lie banaya hai mtlb hamara button aur placeholder ki value change ho skti hai , isk liye hume sbse phele ek languaugeconstants.js naam se fie banayi usk andar humne alag languages ka search name aur placholder name daala, usk baad header me options diye langauge select krne k lie aur jo bhi option slect hore hai usko hum redux me daal dere hai , mtlb default value humne redux k andar english rkhi aur jb bhi koi options ko click krt hai to jo option click hoga usk hisab se redux k andar ki value change ho jaaegi, aur phir uss value ko hum useSelector k through access krenge, aur apne GptSearchBar waale component me use krenge languageConstant k sth kyuki language constant k andar hi alag alag languages ka data hai .
+- isk baad humne gemini ki api ka use kia movies ko serach krne k lie kyuki jo opeanai ki api thi vo dikkat deri thi , gemini ko access krne k lie phele humne secret api key li gemini se , aur phir npm se boiler plate code uthaya gemini me search krne ka , aur uss boiler plate cod ek andar humne secret key provide kri , aur ek prompt pass kia  jo ki gemini k pass jaeaga aur ye prompt vo hoga jo ki hume search boc me type krnege aur uss search box k content ko humne useRef k through access kia hai ,  aurr uss basis pr hume vo movies suggest krega. usk baad hume jo bhi movies ka result milega ,aur hume jo movie ka result milega vo string ki form me hoga to hum usko .split ka use krk comma se seperate krenge taaki vo array k form me bn jaae aur uspe hum iterate krk uski information hum TMDB tk paucha paaye, usko hum TMDB ki api ko pass krenge aur uss movies ki details fetch krk hum apni UI me display krenge. 
+- isk baad humne ek nayi file banayi .env krk jisk andar humne secret keys wagera rakhi hai , jaise ki GEMINI ki key and TMDB api ki key , aur .env file ko humne gitignore me daal dia taaki hamarai keys github me na chli jaaye, aur isk baad me hm ek aur kaam kr skte hai agr hume chahe to ki , hum user se uski key maangkr GPT use krne ka aceess de skte hai taak hamara bill jyada bda na bn jaaye .
+- isk baad hume memoization ka use kia hai , mtlb jha pr bhi humne tmdb ki movies ki ai call ki thi , mtlb trailer fetch krne k lie aur ya phir topratedmovies aur popular movies ki , to hamari api call br br use hori hai jb bhi hum apna browse page ka component re-render krrre hai , aur jbki esa ni hona chaiye kyuki humne redux bhi use kia hai , to saari movies ek br ai call krne pr redux me tore ho jaari hai to br br api call kuu krni hai , agr 100 user bhi hamari app ek br me use krre hai to kitnni saari api call ho jaaegi isse hamara app slow ho jaaega , isliye hum memoization ka use krte hai , isse humapi call ko br br hone se rokte hai , ye dekhkr ki khi api se fecth hua data already redux me to nhi hai , agr already redux me hoga to api call ni krenge aur agr hoga to krenge.
+-  Making our website responsive:
+  - px: ye fixed hote hai aur move nhi krte
+  - % : changes according to height and width of the parent container
+  - vw,vh: agr ek div k andar dusra div ha to agr hum % ka use krte hai to andar waala div bahar waale div k according height aur width use krta hai , pr agr hum vw aur vh lete hai to andar waala div window k according height aur width use krta hai .
+  - vmax, vmin :
+  - em,rem: em takes font-size according to parent element and rem takes font size according to root element , agr parent ka font size 20px ka hai to usk andar agr h1 hai to uska font-size 1em krenge to vo bhi 20px hi hoga aur agr hum uska 2em krenge to vo 40px hoga , aur agr hum rem me krenge to vo screen k size according krega and vaue of 1 rem is 16px.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
 
-In the project directory, you can run:
+# Features
+- Login/sign up
+  - Sign in /Sign up form 
+  - on sign or sign up it redirect us to the browse page 
 
-### `npm start`
+- Browse page will open (after authentication)
+  - Header 
+  - Main movie 
+    - Trailer in background 
+    - Title and description
+    - Movie suggestions
+      - MovieLists * N 
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+ - Netflix-Gpt
+   - Search bar 
+   - Movie suggestion 
