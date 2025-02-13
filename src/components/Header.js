@@ -82,8 +82,8 @@ const Header = () => {
          
         <div className=" ml-8">
         
-        {  gptSearch &&
-           <select  className="bg-black border-2 border-white rounded-md px-2 py-1"
+        {/* {  gptSearch &&
+           <select  className="bg-black border-2 border-white rounded-md px-2 py-1 ml-72 mt-7"
            onChange={handleLanguageChange}
            >
                {
@@ -94,10 +94,10 @@ const Header = () => {
                }
            </select>
    
-        }
+        } */}
       
         <Link to="/browse">
-        <button className="bg-red-700 px-2 mx-3 rounded-md ml-8 py-1"
+        <button className="bg-green-700 px-2 mx-3 rounded-md ml-8 py-1"
         onClick={handleGptSearchClick}
           > {gptSearch ? "Homepage" : "GPT 🤖"}</button>
         </Link>

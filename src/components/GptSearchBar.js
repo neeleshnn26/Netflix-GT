@@ -53,7 +53,7 @@ const GptSearchBar = () => {
       }}
        
        />
-       <button className=" rounded-md border-2 border-black py-3 px-5 ml-3 font-semibold bg-red-700"
+       <button className=" rounded-md border-2 border-black py-3 px-5 ml-3 font-semibold bg-green-700"
             onClick={handleGptSearchClick}
        >{lang[language]?.search}</button>
       </form>
